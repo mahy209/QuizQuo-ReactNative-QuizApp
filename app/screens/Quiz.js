@@ -3,7 +3,6 @@ import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, An
 import { COLORS, SIZES } from '../constants';
 import data from '../data/QuizData';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { render } from 'react-dom';
 
 
 export default function Quiz() {
@@ -68,15 +67,20 @@ export default function Quiz() {
             <View style={{
                 marginVertical: 40
             }}>
-                {/* Question-Counter */}
-                <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                {/* Question Counter */}
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'flex-end'
+                }}>
                     <Text style={{color: COLORS.white, fontSize: 20, opacity: 0.6, marginRight: 2}}>{currentQuestionIndex+1}</Text>
                     <Text style={{color: COLORS.white, fontSize: 18, opacity: 0.6}}>/ {allQuestions.length}</Text>
                 </View>
 
                 {/* Question */}
-                <Text style={{ color: COLORS.white, fontSize: 24 }}>
-                    {allQuestions[currentQuestionIndex]?.question}</Text>
+                <Text style={{
+                    color: COLORS.white,
+                    fontSize: 30
+                }}>{allQuestions[currentQuestionIndex]?.question}</Text>
             </View>
         )
     }
@@ -90,7 +94,8 @@ export default function Quiz() {
                         onPress={()=> validateAnswer(option)}
                         disabled={isOptionsDisabled}
                         key={option}
-                        style={{borderWidth: 3, 
+                        style={{
+                            borderWidth: 3, 
                             borderColor: option==correctOption 
                             ? COLORS.success
                             : option==currentOptionSelected 
@@ -100,8 +105,14 @@ export default function Quiz() {
                             ? COLORS.success +'20'
                             : option==currentOptionSelected 
                             ? COLORS.error +'20'
-                            : COLORS.secondary+'20', 
-                            height: 60, borderRadius: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, marginVertical: 10 }}>
+                            : COLORS.secondary+'20',
+                            height: 60, borderRadius: 20,
+                            flexDirection: 'row',
+                            alignItems: 'center', justifyContent: 'space-between',
+                            paddingHorizontal: 20,
+                            marginVertical: 10
+                        }}
+                        >
                             <Text style={{fontSize: 20, color: COLORS.white}}>{option}</Text>
 
                             {/* Show Check Or Cross Icon based on correct answer*/}
@@ -130,6 +141,7 @@ export default function Quiz() {
                                     </View>
                                 ) : null
                             }
+
                         </TouchableOpacity>
                     ))
                 }
@@ -140,8 +152,11 @@ export default function Quiz() {
     const renderNextButton = () => {
         if(showNextButton){
             return (
-                <TouchableOpacity onPress={handleNext}
-                style={{ marginTop: 20, width: '100%', backgroundColor: COLORS.accent, padding: 20, borderRadius: 5 }}>
+                <TouchableOpacity
+                onPress={handleNext}
+                style={{
+                    marginTop: 20, width: '100%', backgroundColor: COLORS.accent, padding: 20, borderRadius: 5
+                }}>
                     <Text style={{fontSize: 20, color: COLORS.white, textAlign: 'center'}}>Next</Text>
                 </TouchableOpacity>
             )
@@ -162,8 +177,8 @@ export default function Quiz() {
                 height: 15,
                 borderRadius: 20,
                 backgroundColor: '#00000020',
-
             }}>
+
                 <Animated.View style={[{
                     height: 15,
                     borderRadius: 20,
@@ -180,11 +195,18 @@ export default function Quiz() {
 
 
     return (
-        <SafeAreaView Style={{ flex: 1}}>
-        <StatusBar barStyle="light-content" backgroundColor={COLORS.primary} />
-        <View resizeMode={'contain'}
-        style={{ flex: 1, paddingVertical: 40, paddingHorizontal: 16, backgroundColor: COLORS.background, position:'relative', height:'100%'}}>
-        
+        <SafeAreaView style={{
+            flex: 1
+        }}>
+            <StatusBar barStyle="light-content" backgroundColor={COLORS.primary} />
+            <View style={{
+                flex: 1,
+                paddingVertical: 40,
+                paddingHorizontal: 16,
+                backgroundColor: COLORS.background,
+                position:'relative'
+            }}>
+
         {/* progress-bar */}
         {renderProgressBar()}
 
@@ -198,31 +220,39 @@ export default function Quiz() {
         {renderNextButton()}
 
         {/* Score Modal */}
-        <Modal animationType="slide" transparent={true} visible={showScoreModal}>
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={showScoreModal}>
             <View style={{ flex: 1, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center' }}>
-                <View style={{ backgroundColor: COLORS.white, width: '90%', borderRadius: 20, padding: 20, alignItems: 'center'}}>
+                <View style={{ backgroundColor: COLORS.white, width: '90%', borderRadius: 20, padding: 20, alignItems: 'center' }}>
                     <Text style={{fontSize: 30, fontWeight: 'bold'}}>{ score> (allQuestions.length/2) ? 'Congratulations!' : 'Oops!' }</Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginVertical: 20 }}>
-                            <Text style={{ fontSize: 30, color: score> (allQuestions.length/2) ? COLORS.success : COLORS.error }}>
-                            {score}</Text>
-                                <Text style={{ fontSize: 20, color: COLORS.black}}>/ { allQuestions.length }</Text>
+                            <Text style={{ fontSize: 30, color: score> (allQuestions.length/2) ? COLORS.success : COLORS.error }}>{score}</Text>
+                                <Text style={{ fontSize: 20, color: COLORS.black }}>/ { allQuestions.length }</Text>
                         </View>
-                        
                         {/* Retry Quiz button */}
-                        <TouchableOpacity onPress={restartQuiz}
+                        <TouchableOpacity
+                        onPress={restartQuiz}
                         style={{ backgroundColor: COLORS.accent, padding: 20, width: '100%', borderRadius: 20 }}>
-                        <Text style={{ textAlign: 'center', color: COLORS.white, fontSize: 20}}>
-                            Retry Quiz</Text>
+                        <Text style={{ textAlign: 'center', color: COLORS.white, fontSize: 20}}>Retry Quiz</Text>
                         </TouchableOpacity>
-
+                        </View>
                     </View>
-
-                </View>
-            </Modal>
+                </Modal>
 
         {/* background-Image */}
         <Image  source={require('../assets/Questions-bro.png')}
-                style={{ height: 200, zIndex: -1, position: 'absolute', bottom: 0,left: 0,right: 0}}
+                style={{
+                    width: SIZES.width,
+                    height: 200,
+                    zIndex: -1,
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    opacity: 0.8
+                }}
                 resizeMode={'contain'}
                 />
 

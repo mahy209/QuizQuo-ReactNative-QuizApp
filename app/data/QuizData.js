@@ -10,7 +10,7 @@ const data = [
         correct_option: "clear"
     },
     {
-        question: "Suppose we want to arragnge five nos. of DIVs so that DIV4 is placed above DIV1. Now, which css property will we use to control the order of stack?",
+        question: "Suppose we want to arrange five nos. of DIVs so that DIV4 is placed above DIV1. Now, which css property will we use to control the order of stack?",
         options: ["d-index","y-index","x-index","z-index"],
         correct_option: "z-index"
     },
@@ -36,7 +36,7 @@ const data = [
     },
     {
         question: "Which of the following properties will we use to display border around a cell without any content ?",
-        options: ["void-cell","noncontent-cell","empty-cell","blank-cell"],
+        options: ["void-cell","noncoherent-cell","empty-cell","blank-cell"],
         correct_option: "empty-cell"
     },
     {
